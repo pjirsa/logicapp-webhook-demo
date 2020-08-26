@@ -20,7 +20,7 @@ namespace logicdemo
 
             log.LogInformation($"C# Queue trigger function processed: {item.data}");
             log.LogInformation("Starting long-running process.");
-            Thread.Sleep(TimeSpan.FromSeconds(15));
+            Thread.Sleep(TimeSpan.FromSeconds(30));
             ProcessResponse result = new ProcessResponse { data = "some result data" };
 
             await item.callbackUrl.PostJsonAsync(result);
