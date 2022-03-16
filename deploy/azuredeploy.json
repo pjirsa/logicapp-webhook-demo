@@ -13,11 +13,7 @@
     "namespaces_logicdemo_name": {
       "defaultValue": "logicdemo",
       "type": "String"
-    },
-    "components_logicdemofunc_name": {
-      "defaultValue": "logicdemofunc",
-      "type": "String"
-    },
+    },    
     "serverfarms_ASP_logicdemo_b4a2_name": {
       "defaultValue": "ASP-logicdemo-b4a2",
       "type": "String"
@@ -25,52 +21,10 @@
     "storageAccounts_storageaccountlogicb368_name": {
       "defaultValue": "storageaccountlogicb368",
       "type": "String"
-    },
-    "actionGroups_Application_Insights_Smart_Detection_name": {
-      "defaultValue": "Application Insights Smart Detection",
-      "type": "String"
-    },
-    "smartdetectoralertrules_failure_anomalies___logicdemofunc_name": {
-      "defaultValue": "failure anomalies - logicdemofunc",
-      "type": "String"
     }
   },
   "variables": {},
-  "resources": [
-    {
-      "type": "microsoft.insights/actionGroups",
-      "apiVersion": "2019-03-01",
-      "name": "[parameters('actionGroups_Application_Insights_Smart_Detection_name')]",
-      "location": "Global",
-      "properties": {
-        "groupShortName": "SmartDetect",
-        "enabled": true,
-        "emailReceivers": [],
-        "smsReceivers": [],
-        "webhookReceivers": [],
-        "itsmReceivers": [],
-        "azureAppPushReceivers": [],
-        "automationRunbookReceivers": [],
-        "voiceReceivers": [],
-        "logicAppReceivers": [],
-        "azureFunctionReceivers": []
-      }
-    },
-    {
-      "type": "microsoft.insights/components",
-      "apiVersion": "2018-05-01-preview",
-      "name": "[parameters('components_logicdemofunc_name')]",
-      "location": "eastus",
-      "kind": "web",
-      "properties": {
-        "Application_Type": "web",
-        "Flow_Type": "Redfield",
-        "Request_Source": "AppServiceEnablementCreate",
-        "RetentionInDays": 90,
-        "publicNetworkAccessForIngestion": "Enabled",
-        "publicNetworkAccessForQuery": "Enabled"
-      }
-    },
+  "resources": [        
     {
       "type": "Microsoft.Logic/workflows",
       "apiVersion": "2017-07-01",
@@ -137,9 +91,6 @@
       "apiVersion": "2018-01-01-preview",
       "name": "[parameters('namespaces_logicdemo_name')]",
       "location": "East US",
-      "tags": {
-        "SuccessEngagement": "7-R4RIX4DAP"
-      },
       "sku": {
         "name": "Basic",
         "tier": "Basic"
@@ -153,9 +104,6 @@
       "apiVersion": "2019-06-01",
       "name": "[parameters('storageAccounts_storageaccountlogicb368_name')]",
       "location": "centralus",
-      "tags": {
-        "SuccessEngagement": "7-W6VQV7XDF"
-      },
       "sku": {
         "name": "Standard_LRS",
         "tier": "Standard"
@@ -189,9 +137,6 @@
       "apiVersion": "2018-02-01",
       "name": "[parameters('serverfarms_ASP_logicdemo_b4a2_name')]",
       "location": "Central US",
-      "tags": {
-        "SuccessEngagement": "7-W6VQV7XDF"
-      },
       "sku": {
         "name": "Y1",
         "tier": "Dynamic",
@@ -280,9 +225,6 @@
       "dependsOn": [
         "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_ASP_logicdemo_b4a2_name'))]"
       ],
-      "tags": {
-        "SuccessEngagement": "7-W6VQV7XDF"
-      },
       "kind": "functionapp",
       "properties": {
         "enabled": true,
@@ -321,9 +263,6 @@
       "dependsOn": [
         "[resourceId('Microsoft.Web/sites', parameters('sites_logicdemofunc_name'))]"
       ],
-      "tags": {
-        "SuccessEngagement": "7-W6VQV7XDF"
-      },
       "properties": {
         "numberOfWorkers": -1,
         "defaultDocuments": [
